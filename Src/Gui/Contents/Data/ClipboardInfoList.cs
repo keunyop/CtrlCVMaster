@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using System.Data;
+using System.Reflection;
+using System.Xml;
 
 namespace CtrlCVMaster.Gui.Contents.Data
 {
@@ -54,7 +57,50 @@ namespace CtrlCVMaster.Gui.Contents.Data
             catch (Exception ex)
             {
                 return 0;
-            }            
+            }
+        }
+
+        /// <summary>
+        /// Convert and return the clipboardinfolist to DataTable
+        /// </summary>
+        public DataTable GetDataTable()
+        {
+            DataTable dt = new DataTable("SavedClipboardData");
+            int i = 0;
+
+            foreach (ClipboardInfo info in this)
+            {
+                PropertyDescriptorCollection Classproperties = TypeDescriptor.GetProperties(info);
+
+                if (i == 0) // Create Table Header
+                {
+                    // Create Columns
+                    for (int x = 0; x < Classproperties.Count; x++)
+                    {
+                        DataColumn dtc = new DataColumn();
+                        dtc.ColumnName = Classproperties[x].Name;
+
+                        dt.Columns.Add(dtc);
+                    }
+                }
+
+                DataRow dr = dt.NewRow(); // new datatable row
+
+                //Fill in Datatable
+                for (int x = 0; x < Classproperties.Count; x++)
+                {
+                    Type fieldtype = info.GetType();
+                    string fldname = Classproperties[x].Name.ToString();
+                    PropertyInfo prtinf = fieldtype.GetProperty(fldname) as PropertyInfo;
+                    dr[x] = prtinf.GetValue(info, null);
+                }
+
+                dt.Rows.Add(dr);
+
+                i++;
+            }
+
+            return dt;
         }
     }
 

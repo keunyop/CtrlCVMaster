@@ -11,6 +11,8 @@ using System.Collections;
 using System.Runtime.InteropServices;
 using System.IO;
 using DevExpress.XtraEditors;
+using System.Xml;
+using CtrlCVMaster.Gui.Contents.Options;
 
 namespace CtrlCVMaster.Gui.Contents
 {
@@ -53,7 +55,7 @@ namespace CtrlCVMaster.Gui.Contents
         private void SetData()
         {
             ClipboardInfoList clipboardInfoList = new ClipboardInfoList();
-            this.grdCtrl.DataSource = clipboardInfoList;         
+            this.grdCtrl.DataSource = clipboardInfoList;
         }
 
         public int AddData()
@@ -70,10 +72,15 @@ namespace CtrlCVMaster.Gui.Contents
                 }
 
                 ClipboardInfo clipboardInfo = new ClipboardInfo();
-                if (Clipboard.ContainsText())
+                if (Clipboard.ContainsText()) // if the copied object is a text
                 {
                     clipboardInfo.CONTENTS = Clipboard.GetText();
                     clipboardInfo.CONTENTSTYPE = ContentsType.Text;
+                }
+                else if (Clipboard.ContainsImage()) // if the copied object is an image
+                {
+                    clipboardInfo.CONTENTS = " ** Copying an image is not supported. **";
+                    clipboardInfo.CONTENTSTYPE = ContentsType.Image;
                 }
                 
                 clipboardInfo.COPIEDTIME = (DateTime.Now).ToString();
@@ -135,6 +142,9 @@ namespace CtrlCVMaster.Gui.Contents
         {
             try
             {
+                // ToDo
+                // Add 버튼 클릭시 추가하는게 텍스트인지 이미지인지
+
                 ClipboardInfoList clipboardInfoList = this.GetClipboardInfoList;
                 ClipboardInfo clipboardInfo = new ClipboardInfo();
                 clipboardInfo.CONTENTSTYPE = ContentsType.Text;
@@ -181,10 +191,16 @@ namespace CtrlCVMaster.Gui.Contents
 
         }
 
+        #region Tray Context Menu Button
         /// <summary>
         /// 트레이 컨텍스트 메뉴 - 열기 버튼
         /// </summary>
         private void trayMenu_Open_Click(object sender, EventArgs e)
+        {
+            this.Show();
+        }
+
+        private void trayMenu_OpenDisabled_Click(object sender, EventArgs e)
         {
             this.Show();
         }
@@ -208,7 +224,7 @@ namespace CtrlCVMaster.Gui.Contents
         }
 
         /// <summary>
-        /// traymenu Enable Clipboard Button
+        /// Tray Context Menu - Enable Clipboard Button
         /// </summary>
         private void trayMenu_Enable_Click(object sender, EventArgs e)
         {
@@ -216,6 +232,12 @@ namespace CtrlCVMaster.Gui.Contents
             {
                 this.trayMenu_Enable.Visible = false;
                 this.trayMenu_Disable.Visible = true;
+                this.trayMenu_Open.Visible = true;
+                this.trayMenu_OpenDisabled.Visible = false;
+
+                this.notifyIcon.Icon = new System.Drawing.Icon(Application.StartupPath + @"\Main.ico");
+                this.notifyIcon.Text = "CtrlCVMaster";
+                this.Icon = new System.Drawing.Icon(Application.StartupPath + @"\Main.ico");
 
                 this.globalEventProvider.KeyDown += new System.Windows.Forms.KeyEventHandler(this.globalEventProvider_KeyDown);
                 this.globalEventProvider.KeyUp += new System.Windows.Forms.KeyEventHandler(this.globalEventProvider_KeyUp);
@@ -227,7 +249,7 @@ namespace CtrlCVMaster.Gui.Contents
         }
 
         /// <summary>
-        /// traymenu Disable Clipboard Button
+        /// Tray Contact Menu - Disable Clipboard Button
         /// </summary>
         private void trayMenu_Disable_Click(object sender, EventArgs e)
         {
@@ -235,6 +257,12 @@ namespace CtrlCVMaster.Gui.Contents
             {
                 this.trayMenu_Enable.Visible = true;
                 this.trayMenu_Disable.Visible = false;
+                this.trayMenu_Open.Visible = false;
+                this.trayMenu_OpenDisabled.Visible = true;
+
+                this.notifyIcon.Icon = new System.Drawing.Icon(Application.StartupPath + @"\Main_Disabled.ico");
+                this.notifyIcon.Text = "CtrlCVMaster(Disabled)";
+                this.Icon = new System.Drawing.Icon(Application.StartupPath + @"\Main_Disabled.ico");
 
                 this.globalEventProvider.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.globalEventProvider_KeyDown);
                 this.globalEventProvider.KeyUp -= new System.Windows.Forms.KeyEventHandler(this.globalEventProvider_KeyUp);
@@ -261,6 +289,7 @@ namespace CtrlCVMaster.Gui.Contents
                 ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString(), t);
             }
         }
+        #endregion
 
         /// <summary>
         /// 콘텍스트 메뉴 추가
@@ -401,12 +430,13 @@ namespace CtrlCVMaster.Gui.Contents
         {
             try
             {
-                //OpenFileDialog openFileDialog = new OpenFileDialog();
-                //openFileDialog.Title = "Open File";
-                //openFileDialog.Filter = "Text(*.txt)|*.txt";
-                //if (openFileDialog.ShowDialog() == DialogResult.OK)
-                //{
-                //}
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Title = "Open File";
+                openFileDialog.Filter = "XML File(*.xml)|*.xml";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                  
+                }
             }
             catch (Exception ex)
             {
@@ -415,22 +445,24 @@ namespace CtrlCVMaster.Gui.Contents
         }
 
         /// <summary>
-        /// 저장 버튼
+        /// Save Button
         /// </summary>
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
-                //SaveFileDialog saveFileDialog = new SaveFileDialog();
-                //saveFileDialog.OverwritePrompt = true;
-                //saveFileDialog.ValidateNames = true;
-                //saveFileDialog.FileName = "";
-                //saveFileDialog.Filter = "Text(*.txt)|*.txt";
-                //if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                //{
-                //DataSet ds = (DataSet)this.grdCtrl.DataSource;
-                //ds.WriteXml("C:/CtrlCVMaster.xml", XmlWriteMode.IgnoreSchema);
-                //}
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.OverwritePrompt = true;
+                saveFileDialog.ValidateNames = true;
+                saveFileDialog.FileName = "CtrlCVMaster_SavedClipboard.xml";
+                saveFileDialog.Filter = "XML File(*.xml)|*.xml";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    ClipboardInfoList clipboardInfoList = this.GetClipboardInfoList;
+                    DataTable dt = clipboardInfoList.GetDataTable();
+                    dt.WriteXml(saveFileDialog.FileName);
+                }
             }
             catch (Exception ex)
             {
@@ -516,6 +548,10 @@ namespace CtrlCVMaster.Gui.Contents
 
                         if (info.CONTENTSTYPE == ContentsType.Text)
                             this.trayMenu_ShowList.DropDownItems[listNum].Image = ((System.Drawing.Image)(this.imgResource.GetObject("trayMenu_Text.Image")));
+                        else if (info.CONTENTSTYPE == ContentsType.Image)
+                        {
+                            // 이미지 아이콘 표시
+                        }
 
                         listNum++;
                     }

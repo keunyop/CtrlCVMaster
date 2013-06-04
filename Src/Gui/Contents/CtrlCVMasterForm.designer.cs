@@ -50,6 +50,7 @@
             this.lbl_ctrl = new DevExpress.XtraEditors.LabelControl();
             this.chkbox_shift = new DevExpress.XtraEditors.CheckEdit();
             this.col_Contents = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repPopUp_Image = new DevExpress.XtraEditors.Repository.RepositoryItemImageEdit();
             this.globalEventProvider = new Gma.UserActivityMonitor.GlobalEventProvider();
             this.pnlTop = new DevExpress.XtraEditors.PanelControl();
             this.btnMoveUp = new DevExpress.XtraEditors.SimpleButton();
@@ -65,10 +66,11 @@
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip_tray = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.trayMenu_Open = new System.Windows.Forms.ToolStripMenuItem();
+            this.trayMenu_OpenDisabled = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.trayMenu_ShowList = new System.Windows.Forms.ToolStripMenuItem();
             this.trayMenu_DelList = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.trayMenu_Enable = new System.Windows.Forms.ToolStripMenuItem();
             this.trayMenu_Disable = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
@@ -84,6 +86,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chkBox_Alt.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkBox_Ctrl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkbox_shift.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repPopUp_Image)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).BeginInit();
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
@@ -100,7 +103,8 @@
             this.grdCtrl.MainView = this.grdView;
             this.grdCtrl.Name = "grdCtrl";
             this.grdCtrl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repPopUp});
+            this.repPopUp,
+            this.repPopUp_Image});
             this.grdCtrl.Size = new System.Drawing.Size(355, 234);
             this.grdCtrl.TabIndex = 4;
             this.grdCtrl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -299,6 +303,13 @@
             this.col_Contents.VisibleIndex = 1;
             this.col_Contents.Width = 242;
             // 
+            // repPopUp_Image
+            // 
+            this.repPopUp_Image.AutoHeight = false;
+            this.repPopUp_Image.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repPopUp_Image.Name = "repPopUp_Image";
+            // 
             // globalEventProvider
             // 
             this.globalEventProvider.KeyDown += new System.Windows.Forms.KeyEventHandler(this.globalEventProvider_KeyDown);
@@ -438,7 +449,7 @@
             // notifyIcon
             // 
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
-            this.notifyIcon.Text = "Ctrl+CV의 달인";
+            this.notifyIcon.Text = "CtrlCVMaster";
             this.notifyIcon.Visible = true;
             this.notifyIcon.DoubleClick += new System.EventHandler(this.notifyIcon_DoubleClick);
             // 
@@ -446,10 +457,11 @@
             // 
             this.contextMenuStrip_tray.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.trayMenu_Open,
+            this.trayMenu_OpenDisabled,
             this.toolStripSeparator3,
             this.trayMenu_ShowList,
             this.trayMenu_DelList,
-            this.toolStripSeparator2,
+            this.toolStripSeparator5,
             this.trayMenu_Enable,
             this.trayMenu_Disable,
             this.toolStripSeparator4,
@@ -466,6 +478,15 @@
             this.trayMenu_Open.Size = new System.Drawing.Size(169, 22);
             this.trayMenu_Open.Text = "Open";
             this.trayMenu_Open.Click += new System.EventHandler(this.trayMenu_Open_Click);
+            // 
+            // trayMenu_OpenDisabled
+            // 
+            this.trayMenu_OpenDisabled.Image = ((System.Drawing.Image)(resources.GetObject("trayMenu_OpenDisabled.Image")));
+            this.trayMenu_OpenDisabled.Name = "trayMenu_OpenDisabled";
+            this.trayMenu_OpenDisabled.Size = new System.Drawing.Size(169, 22);
+            this.trayMenu_OpenDisabled.Text = "Open";
+            this.trayMenu_OpenDisabled.Visible = false;
+            this.trayMenu_OpenDisabled.Click += new System.EventHandler(this.trayMenu_OpenDisabled_Click);
             // 
             // toolStripSeparator3
             // 
@@ -489,10 +510,10 @@
             this.trayMenu_DelList.Text = "Delete List";
             this.trayMenu_DelList.Click += new System.EventHandler(this.trayMenu_DelList_Click);
             // 
-            // toolStripSeparator2
+            // toolStripSeparator5
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(166, 6);
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(166, 6);
             // 
             // trayMenu_Enable
             // 
@@ -557,6 +578,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chkBox_Alt.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkBox_Ctrl.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkbox_shift.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repPopUp_Image)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).EndInit();
             this.pnlTop.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
@@ -596,7 +618,6 @@
         private System.Windows.Forms.ToolStripMenuItem contextMenuStrip_MoveDown;
         private System.Windows.Forms.ToolStripMenuItem trayMenu_ShowList;
         private System.Windows.Forms.ToolStripMenuItem trayMenu_DelList;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private DevExpress.XtraEditors.LabelControl lbl_ItemCount;
         private DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit repPopUp;
         private DevExpress.XtraEditors.PopupContainerControl popUpCtrl;
@@ -614,5 +635,8 @@
         private System.Windows.Forms.ToolStripMenuItem trayMenu_Enable;
         private System.Windows.Forms.ToolStripMenuItem trayMenu_Disable;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private DevExpress.XtraEditors.Repository.RepositoryItemImageEdit repPopUp_Image;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem trayMenu_OpenDisabled;
     }
 }

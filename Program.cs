@@ -35,7 +35,7 @@ namespace CtrlCVMaster
         static void DebugMethod()
         {
             ConsoleLib.ConsoleLib.CreateConsole();
-            ConsoleLib.ConsoleLib.WriteLine("Ctrl+CV Master Start Debuging" + Environment.NewLine);
+            ConsoleLib.ConsoleLib.WriteLine("CtrlCVMaster Debugging Start" + Environment.NewLine);
         }
     }
 }
