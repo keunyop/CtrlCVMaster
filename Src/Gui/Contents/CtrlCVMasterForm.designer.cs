@@ -468,36 +468,36 @@
             this.trayMenu_Close,
             this.trayMenu_Text});
             this.contextMenuStrip_tray.Name = "contextMenuStrip";
-            this.contextMenuStrip_tray.Size = new System.Drawing.Size(170, 198);
+            this.contextMenuStrip_tray.Size = new System.Drawing.Size(191, 220);
             // 
             // trayMenu_Open
             // 
             this.trayMenu_Open.Image = ((System.Drawing.Image)(resources.GetObject("trayMenu_Open.Image")));
             this.trayMenu_Open.Name = "trayMenu_Open";
             this.trayMenu_Open.ShortcutKeyDisplayString = "";
-            this.trayMenu_Open.Size = new System.Drawing.Size(169, 22);
-            this.trayMenu_Open.Text = "Open";
+            this.trayMenu_Open.Size = new System.Drawing.Size(190, 22);
+            this.trayMenu_Open.Text = "Open (&O)";
             this.trayMenu_Open.Click += new System.EventHandler(this.trayMenu_Open_Click);
             // 
             // trayMenu_OpenDisabled
             // 
             this.trayMenu_OpenDisabled.Image = ((System.Drawing.Image)(resources.GetObject("trayMenu_OpenDisabled.Image")));
             this.trayMenu_OpenDisabled.Name = "trayMenu_OpenDisabled";
-            this.trayMenu_OpenDisabled.Size = new System.Drawing.Size(169, 22);
-            this.trayMenu_OpenDisabled.Text = "Open";
+            this.trayMenu_OpenDisabled.Size = new System.Drawing.Size(190, 22);
+            this.trayMenu_OpenDisabled.Text = "Open (&O)";
             this.trayMenu_OpenDisabled.Visible = false;
             this.trayMenu_OpenDisabled.Click += new System.EventHandler(this.trayMenu_OpenDisabled_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(166, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(187, 6);
             // 
             // trayMenu_ShowList
             // 
             this.trayMenu_ShowList.Image = ((System.Drawing.Image)(resources.GetObject("trayMenu_ShowList.Image")));
             this.trayMenu_ShowList.Name = "trayMenu_ShowList";
-            this.trayMenu_ShowList.Size = new System.Drawing.Size(169, 22);
+            this.trayMenu_ShowList.Size = new System.Drawing.Size(190, 22);
             this.trayMenu_ShowList.Text = "Show List";
             this.trayMenu_ShowList.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.trayMenu_ShowList_DropDownItemClicked);
             this.trayMenu_ShowList.DropDownOpening += new System.EventHandler(this.trayMenu_ShowList_DropDownOpening);
@@ -506,21 +506,21 @@
             // 
             this.trayMenu_DelList.Image = ((System.Drawing.Image)(resources.GetObject("trayMenu_DelList.Image")));
             this.trayMenu_DelList.Name = "trayMenu_DelList";
-            this.trayMenu_DelList.Size = new System.Drawing.Size(169, 22);
+            this.trayMenu_DelList.Size = new System.Drawing.Size(190, 22);
             this.trayMenu_DelList.Text = "Delete List";
             this.trayMenu_DelList.Click += new System.EventHandler(this.trayMenu_DelList_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(166, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(187, 6);
             // 
             // trayMenu_Enable
             // 
             this.trayMenu_Enable.Image = ((System.Drawing.Image)(resources.GetObject("trayMenu_Enable.Image")));
             this.trayMenu_Enable.Name = "trayMenu_Enable";
-            this.trayMenu_Enable.Size = new System.Drawing.Size(169, 22);
-            this.trayMenu_Enable.Text = "Enable Clipboard";
+            this.trayMenu_Enable.Size = new System.Drawing.Size(190, 22);
+            this.trayMenu_Enable.Text = "Enable Clipboard (&E)";
             this.trayMenu_Enable.Visible = false;
             this.trayMenu_Enable.Click += new System.EventHandler(this.trayMenu_Enable_Click);
             // 
@@ -528,27 +528,27 @@
             // 
             this.trayMenu_Disable.Image = ((System.Drawing.Image)(resources.GetObject("trayMenu_Disable.Image")));
             this.trayMenu_Disable.Name = "trayMenu_Disable";
-            this.trayMenu_Disable.Size = new System.Drawing.Size(169, 22);
-            this.trayMenu_Disable.Text = "Disable Clipboard";
+            this.trayMenu_Disable.Size = new System.Drawing.Size(190, 22);
+            this.trayMenu_Disable.Text = "Disable Clipboard (&D)";
             this.trayMenu_Disable.Click += new System.EventHandler(this.trayMenu_Disable_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(166, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(187, 6);
             // 
             // trayMenu_Close
             // 
             this.trayMenu_Close.Name = "trayMenu_Close";
-            this.trayMenu_Close.Size = new System.Drawing.Size(169, 22);
-            this.trayMenu_Close.Text = "Exit";
+            this.trayMenu_Close.Size = new System.Drawing.Size(190, 22);
+            this.trayMenu_Close.Text = "Exit (&X)";
             this.trayMenu_Close.Click += new System.EventHandler(this.trayMenu_Close_Click);
             // 
             // trayMenu_Text
             // 
             this.trayMenu_Text.Image = ((System.Drawing.Image)(resources.GetObject("trayMenu_Text.Image")));
             this.trayMenu_Text.Name = "trayMenu_Text";
-            this.trayMenu_Text.Size = new System.Drawing.Size(169, 22);
+            this.trayMenu_Text.Size = new System.Drawing.Size(190, 22);
             this.trayMenu_Text.Text = "trayMenu_Text";
             this.trayMenu_Text.Visible = false;
             // 

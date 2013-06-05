@@ -31,33 +31,50 @@ namespace CtrlCVMaster.Gui.Contents.Options
         {
             try
             {
-                this.memoEdit.Text = "Product Version: 1.03" + Environment.NewLine + "Release Date: 2013-06-04";
-                this.memoEdit.Text += Environment.NewLine + Environment.NewLine;
-                this.memoEdit.Text += "Added Feature: ";
-                this.memoEdit.Text += Environment.NewLine + "\t- Activate CtrlCVMaster Shortcut key.";
-                this.memoEdit.Text += Environment.NewLine + "\t- Enable/Disable clipboard connection.";
-                this.memoEdit.Text += Environment.NewLine + "\t\t- Change CtrlCVMaster Icon while disabled.";
-                this.memoEdit.Text += Environment.NewLine + "\t- In the Setting window, only the changed properties are saved.";
-                this.memoEdit.Text += Environment.NewLine + "\t\t- Input validation check added";
-                this.memoEdit.Text += Environment.NewLine + "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _";
-                this.memoEdit.Text += Environment.NewLine + Environment.NewLine;
-                this.memoEdit.Text += "Product Version: 1.03" + Environment.NewLine + "Release Date: 2013-03-12";
-                this.memoEdit.Text += Environment.NewLine + Environment.NewLine;
-                this.memoEdit.Text += "Added Feature: ";
-                this.memoEdit.Text += Environment.NewLine + "\t- Can set Start CtrlCVMaster on System Startup.";
-                this.memoEdit.Text += Environment.NewLine + "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _";
-                this.memoEdit.Text += Environment.NewLine + Environment.NewLine;
-                this.memoEdit.Text += "Product Version: 1.02" + Environment.NewLine + "Release Date: 2013-03-11";
-                this.memoEdit.Text += Environment.NewLine + Environment.NewLine;
-                this.memoEdit.Text += "Added Feature: ";
-                this.memoEdit.Text += Environment.NewLine + "\t- Setting hotkey upto 10.";
-                this.memoEdit.Text += Environment.NewLine + "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _";
-                this.memoEdit.Text += Environment.NewLine + Environment.NewLine;
-                this.memoEdit.Text += "Product Version: 1.01" + Environment.NewLine + "Release Date: 2013-02-18";
+                StringBuilder sb = new StringBuilder();
+
+                sb.AppendLine("Product Version: 1.05");
+                sb.AppendLine("Release Date: 20??-??-??");
+                sb.AppendLine("");
+                sb.AppendLine("Added Feature:");
+                sb.AppendLine("\t- Shortcut keys for the tray context menu");
+                sb.AppendLine("\t- Enforce debugging error log");
+                sb.AppendLine("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _");
+                sb.AppendLine("");
+                sb.AppendLine("Product Version: 1.04");
+                sb.AppendLine("Release Date: 2013-06-04");
+                sb.AppendLine("");
+                sb.AppendLine("Added Feature:");
+                sb.AppendLine("\t- Activate CtrlCVMaster Shortcut key");
+                sb.AppendLine("\t- Enable/Disable clipboard connection");
+                sb.AppendLine("\t\t- Change CtrlCVMaster Icon while disabled");
+                sb.AppendLine("\t- In the Setting window, only the changed properties are saved");
+                sb.AppendLine("\t\t- Input validation check");
+                sb.AppendLine("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _");
+                sb.AppendLine("");
+                sb.AppendLine("Product Version: 1.03");
+                sb.AppendLine("Release Date: 2013-03-12");
+                sb.AppendLine("");
+                sb.AppendLine("Added Feature:");
+                sb.AppendLine("\t- Can set Start CtrlCVMaster on System Startup.");
+                sb.AppendLine("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  _ _ _ _ _ _ _ _ _ _ __ _ _ _");
+                sb.AppendLine("");
+                sb.AppendLine("Product Version: 1.02");
+                sb.AppendLine("Release Date: 2013-03-11");
+                sb.AppendLine("");
+                sb.AppendLine("Added Feature:");
+                sb.AppendLine("\t- Setting hotkey upto 10.");
+                sb.AppendLine("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _");
+                sb.AppendLine("");
+                sb.AppendLine("Product Version: 1.01");
+                sb.AppendLine("Release Date: 2013-02-18");
+               
+                this.memoEdit.Text = sb.ToString();               
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
 
@@ -72,7 +89,8 @@ namespace CtrlCVMaster.Gui.Contents.Options
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
     }

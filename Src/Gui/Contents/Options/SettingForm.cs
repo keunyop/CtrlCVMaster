@@ -38,7 +38,8 @@ namespace CtrlCVMaster.Gui.Contents.Options
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
 
@@ -98,7 +99,8 @@ namespace CtrlCVMaster.Gui.Contents.Options
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
 
@@ -123,7 +125,8 @@ namespace CtrlCVMaster.Gui.Contents.Options
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
     }

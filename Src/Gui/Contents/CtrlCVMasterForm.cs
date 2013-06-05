@@ -42,6 +42,7 @@ namespace CtrlCVMaster.Gui.Contents
             return this.grdView.GetRow(rowHandle) as ClipboardInfo;
         }
 
+        #region DEBUG
         /// <summary>
         /// Debug Console 창에 밝은 빨간색 font
         /// </summary>
@@ -49,6 +50,7 @@ namespace CtrlCVMaster.Gui.Contents
         {
             get { return ConsoleLib.ConsoleLib.ConsoleAttributes.ForegroundRed | ConsoleLib.ConsoleLib.ConsoleAttributes.ForegroundIntensity; }
         }
+        #endregion
         #endregion
 
         #region Data Process
@@ -93,7 +95,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
                 return 0;
             }
         }
@@ -158,7 +161,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
                 return 0;
             }
         }
@@ -185,10 +189,10 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
                 return 0;
             }
-
         }
 
         #region Tray Context Menu Button
@@ -219,7 +223,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
 
@@ -244,7 +249,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted("trayMenu_Enable_Click" + ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
 
@@ -269,7 +275,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted("trayMenu_Disable_Click" + ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
 
@@ -286,7 +293,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
         #endregion
@@ -359,7 +367,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
 
@@ -385,7 +394,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
 
@@ -402,7 +412,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
 
@@ -419,28 +430,41 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
 
         /// <summary>
-        /// 불러오기 버튼
+        /// Load Button Click
         /// </summary>
         private void btnLoad_Click(object sender, EventArgs e)
         {
             try
             {
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.Title = "Open File";
-                openFileDialog.Filter = "XML File(*.xml)|*.xml";
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                  
-                }
+                //OpenFileDialog openFileDialog = new OpenFileDialog();
+                //openFileDialog.Title = "Open File";
+                //openFileDialog.Filter = "XML File(*.xml)|*.xml";
+                //if (openFileDialog.ShowDialog() == DialogResult.OK)
+                //{
+                //    // 1. xml 파일을 datatable로 변환
+                //    // 2. datatable을 clipboardInfoList로 변환
+                //    // 3. this.grdCtrl.DataSource = clipboardInfoList
+                //}
+
+                // 테스트 용
+                ClipboardInfoList clipboardInfoList = this.GetClipboardInfoList;
+                DataTable dt = clipboardInfoList.GetDataTable();
+
+                clipboardInfoList.Clear();
+
+                ClipboardInfoList cl = clipboardInfoList.SetDataTable(dt);
+                this.grdCtrl.DataSource = cl;
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
 
@@ -466,7 +490,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
         #endregion
@@ -495,7 +520,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
 
@@ -559,7 +585,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
         #endregion
@@ -625,7 +652,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
                 return null;
             }
         }
@@ -643,7 +671,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted("DelHotKey" + ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
 
@@ -663,7 +692,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted("hk_Pressed" + ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
         private void hk_Pressed2(object sender, HandledEventArgs e)
@@ -680,7 +710,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted("hk_Pressed" + ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
         private void hk_Pressed3(object sender, HandledEventArgs e)
@@ -697,7 +728,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted("hk_Pressed" + ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
         private void hk_Pressed4(object sender, HandledEventArgs e)
@@ -714,7 +746,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted("hk_Pressed" + ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
         private void hk_Pressed5(object sender, HandledEventArgs e)
@@ -731,7 +764,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted("hk_Pressed" + ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
         private void hk_Pressed6(object sender, HandledEventArgs e)
@@ -748,7 +782,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted("hk_Pressed" + ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
         private void hk_Pressed7(object sender, HandledEventArgs e)
@@ -765,7 +800,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted("hk_Pressed" + ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
         private void hk_Pressed8(object sender, HandledEventArgs e)
@@ -782,7 +818,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted("hk_Pressed" + ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
         private void hk_Pressed9(object sender, HandledEventArgs e)
@@ -799,7 +836,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted("hk_Pressed" + ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
         private void hk_Pressed0(object sender, HandledEventArgs e)
@@ -816,7 +854,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted("hk_Pressed" + ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
 
@@ -838,7 +877,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted("activateHk_Pressed" + ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
         #endregion
@@ -933,7 +973,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
 
@@ -956,7 +997,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
                 return false;
             }
         }
@@ -988,7 +1030,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
         #endregion
@@ -1014,7 +1057,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted("chkBox_Ctrl_CheckedChanged" + ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
 
@@ -1032,7 +1076,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted("chkBox_Alt_CheckedChanged" + ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
 
@@ -1055,7 +1100,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted("CtrlCVMasterForm.btn_DelShortcut_Click" + ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
 
@@ -1080,7 +1126,8 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted("ActivateShortcutKey" + ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
     }

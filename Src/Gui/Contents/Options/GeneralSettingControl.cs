@@ -64,7 +64,8 @@ namespace CtrlCVMaster.Gui.Contents.Options
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted("GeneralSettingControl.CheckInputData" + ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
                 return false;
             }
         }
@@ -85,7 +86,8 @@ namespace CtrlCVMaster.Gui.Contents.Options
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted("GeneralSettingControl.SetStartup" + ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
 

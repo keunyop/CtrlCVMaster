@@ -59,7 +59,8 @@ namespace CtrlCVMaster.Src.Gui.Contents.Options
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted("ShortcutsControl.CheckInputData" + ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
                 return false;
             }
         }
@@ -106,7 +107,8 @@ namespace CtrlCVMaster.Src.Gui.Contents.Options
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted("ShortcutsControls.btn_ShortCutOk_Click" + ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
 
@@ -138,7 +140,8 @@ namespace CtrlCVMaster.Src.Gui.Contents.Options
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted("ShortcutsControl.popupContainerEdit_Popup" + ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
 
@@ -154,7 +157,8 @@ namespace CtrlCVMaster.Src.Gui.Contents.Options
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted("CtrlCVMasterForm.btn_DelShortcut_Click" + ex.ToString(), t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
     }

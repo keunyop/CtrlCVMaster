@@ -102,6 +102,16 @@ namespace CtrlCVMaster.Gui.Contents.Data
 
             return dt;
         }
+
+        /// <summary>
+        /// Set DataTable to the clipboardinfolist
+        /// </summary>
+        /// <param name="dt"></param>
+        public ClipboardInfoList SetDataTable(DataTable dt)
+        {
+            // DataTable을 받아서 grid.DataSource에 넣을 수 있는 ClipboardInfoList형태로 변환
+            return null;
+        }
     }
 
     public class ClipboardInfo
