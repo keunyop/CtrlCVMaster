@@ -31,49 +31,12 @@ namespace CtrlCVMaster.Gui.Contents.Options
         {
             try
             {
-                StringBuilder sb = new StringBuilder();
-
-                sb.AppendLine("Product Version: 1.05");
-                sb.AppendLine("Release Date: 20??-??-??");
-                sb.AppendLine("");
-                sb.AppendLine("Added Feature:");
-                sb.AppendLine("\t- Shortcut keys for the tray context menu");
-                sb.AppendLine("\t- Enforce debugging error log");
-                sb.AppendLine("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _");
-                sb.AppendLine("");
-                sb.AppendLine("Product Version: 1.04");
-                sb.AppendLine("Release Date: 2013-06-04");
-                sb.AppendLine("");
-                sb.AppendLine("Added Feature:");
-                sb.AppendLine("\t- Activate CtrlCVMaster Shortcut key");
-                sb.AppendLine("\t- Enable/Disable clipboard connection");
-                sb.AppendLine("\t\t- Change CtrlCVMaster Icon while disabled");
-                sb.AppendLine("\t- In the Setting window, only the changed properties are saved");
-                sb.AppendLine("\t\t- Input validation check");
-                sb.AppendLine("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _");
-                sb.AppendLine("");
-                sb.AppendLine("Product Version: 1.03");
-                sb.AppendLine("Release Date: 2013-03-12");
-                sb.AppendLine("");
-                sb.AppendLine("Added Feature:");
-                sb.AppendLine("\t- Can set Start CtrlCVMaster on System Startup.");
-                sb.AppendLine("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  _ _ _ _ _ _ _ _ _ _ __ _ _ _");
-                sb.AppendLine("");
-                sb.AppendLine("Product Version: 1.02");
-                sb.AppendLine("Release Date: 2013-03-11");
-                sb.AppendLine("");
-                sb.AppendLine("Added Feature:");
-                sb.AppendLine("\t- Setting hotkey upto 10.");
-                sb.AppendLine("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _");
-                sb.AppendLine("");
-                sb.AppendLine("Product Version: 1.01");
-                sb.AppendLine("Release Date: 2013-02-18");
-               
-                this.memoEdit.Text = sb.ToString();               
+                string text = System.IO.File.ReadAllText(@"VersionInfo.txt");
+                this.memoEdit.Text = text;
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                                                 ", t);
                 ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }

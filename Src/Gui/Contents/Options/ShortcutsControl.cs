@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using CtrlCVMaster.Gui.Contents.Data;
 using CtrlCVMaster.Gui.Contents.Options;
+using CtrlCVMaster.Properties;
 
 namespace CtrlCVMaster.Src.Gui.Contents.Options
 {
@@ -18,12 +19,12 @@ namespace CtrlCVMaster.Src.Gui.Contents.Options
         public ShortcutsControl()
         {
             InitializeComponent();
-            this.SetData();
+            this.SetSettings();
         }
 
-        private void SetData()
+        private void SetSettings()
         {
-            this.popupContainerEdit.Text = "Alt+Q";
+            this.popupContainerEdit.Text = Settings.Default["Shortcut_ActiveKey"].ToString();
         }
 
         #region DEBUG
@@ -44,7 +45,10 @@ namespace CtrlCVMaster.Src.Gui.Contents.Options
             if (!this.CheckInputData())
                 return false;
 
-            Console.WriteLine("이곳에서 Shortcuts에 대한 설정을 저장한다.!!!!");
+            // Save in the Settings
+            Settings.Default["Shortcut_ActiveKey"] = this.popupContainerEdit.Text;
+            Settings.Default.Save();
+
             return true;
         }
 

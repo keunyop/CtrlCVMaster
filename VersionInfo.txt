@@ -1,0 +1,37 @@
+Product Version: 1.05
+Release Date: 2013-??-??
+
+Added Feature:
+	- Shortcut keys for the tray context menu
+	- Enforce debugging error log
+	- Enforce release version info
+	- Saving settings avaiable
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Product Version: 1.04
+Release Date: 2013-06-04
+
+Added Feature:
+	- Activate CtrlCVMaster Shortcut key
+	- Enable/Disable clipboard connection
+		: Change CtrlCVMaster Icon while disabled
+	- In the Setting window, only the changed properties are saved
+		: Input validation check
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Product Version: 1.03
+Release Date: 2013-03-12
+
+Added Feature:
+	- Can set Start CtrlCVMaster on System Startup.
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  _ _ _ _ _ _ _ _ _ _ __ _ _ _
+
+Product Version: 1.02
+Release Date: 2013-03-11
+
+Added Feature:
+	- Setting hotkey upto 10.
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Product Version: 1.01
+Release Date: 2013-02-18

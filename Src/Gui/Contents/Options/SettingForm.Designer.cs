@@ -184,9 +184,9 @@
             // aboutControl
             // 
             this.aboutControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.aboutControl.Location = new System.Drawing.Point(13, 6);
+            this.aboutControl.Location = new System.Drawing.Point(2, 2);
             this.aboutControl.Name = "aboutControl";
-            this.aboutControl.Size = new System.Drawing.Size(350, 199);
+            this.aboutControl.Size = new System.Drawing.Size(452, 352);
             this.aboutControl.TabIndex = 4;
             // 
             // generalSettingControl
@@ -231,7 +231,7 @@
             this.MinimizeBox = false;
             this.Name = "SettingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Ctrl+CV Master - Setting";
+            this.Text = "CtrlCVMaster - Setting";
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
             this.pnlBottom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlLeft)).EndInit();

@@ -110,6 +110,18 @@ namespace CtrlCVMaster.Gui.Contents.Data
         public ClipboardInfoList SetDataTable(DataTable dt)
         {
             // DataTable을 받아서 grid.DataSource에 넣을 수 있는 ClipboardInfoList형태로 변환
+            //List<DataRow> list = dt.AsEnumerable().ToList();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                foreach (object ob in dr.ItemArray)
+                {
+                    
+                }
+            }
+
+            
+
             return null;
         }
     }

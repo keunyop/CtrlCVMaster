@@ -64,9 +64,9 @@
             // 
             this.lbl_About.Location = new System.Drawing.Point(5, 5);
             this.lbl_About.Name = "lbl_About";
-            this.lbl_About.Size = new System.Drawing.Size(282, 14);
+            this.lbl_About.Size = new System.Drawing.Size(270, 14);
             this.lbl_About.TabIndex = 2;
-            this.lbl_About.Text = "Ctrl+CV Master Product Information (Version: 1.01)";
+            this.lbl_About.Text = "CtrlCVMaster Product Information (Version: 1.05)";
             // 
             // panelBottom
             // 

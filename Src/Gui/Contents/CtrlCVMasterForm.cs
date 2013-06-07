@@ -13,6 +13,7 @@ using System.IO;
 using DevExpress.XtraEditors;
 using System.Xml;
 using CtrlCVMaster.Gui.Contents.Options;
+using CtrlCVMaster.Properties;
 
 namespace CtrlCVMaster.Gui.Contents
 {
@@ -161,7 +162,7 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                               ", t);
                 ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
                 return 0;
             }

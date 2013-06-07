@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.Win32;
+using CtrlCVMaster.Properties;
 
 namespace CtrlCVMaster.Gui.Contents.Options
 {
@@ -17,6 +18,7 @@ namespace CtrlCVMaster.Gui.Contents.Options
         public GeneralSettingControl()
         {
             InitializeComponent();
+            this.SetSettings();
         }
 
         #region DEBUG
@@ -29,6 +31,23 @@ namespace CtrlCVMaster.Gui.Contents.Options
         }
         #endregion
 
+        private void SetSettings()
+        {
+            try
+            {
+                string check = Settings.Default["General_SystemStartup"].ToString();
+                if ("True".Equals(check))
+                    this.chk_Startup.CheckState = CheckState.Checked;
+                else
+                    this.chk_Startup.CheckState = CheckState.Unchecked;                
+            }
+            catch (Exception ex)
+            {
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
+            }
+        }
+
         public override bool StorePanelContents()
         {
             if (!this.bIsChanged)
@@ -37,8 +56,10 @@ namespace CtrlCVMaster.Gui.Contents.Options
             if (!this.CheckInputData())
                 return false;
 
-
-            Console.WriteLine("이곳에서 GeneralSetting에 대한 설정을 저장한다.!!!!");
+            // Save in the Settings
+            Settings.Default["General_MaxNumOfShortcut"] = Int32.Parse(this.cmb_Max.Text);
+            Settings.Default["General_SystemStartup"] = this.chk_Startup.Checked;
+            Settings.Default.Save();
 
 
             // Apply right away
