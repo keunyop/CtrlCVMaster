@@ -63,7 +63,7 @@ namespace CtrlCVMaster.Gui.Contents.Options
 
 
             // Apply right away
-            //this.SetStartup();
+            this.SetStartup();
 
             return true;
         }
@@ -98,7 +98,7 @@ namespace CtrlCVMaster.Gui.Contents.Options
         {
             try
             {
-                RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                RegistryKey rk = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
                 if (this.chk_Startup.Checked)
                     rk.SetValue("CtrlCVMaster", Application.ExecutablePath.ToString());

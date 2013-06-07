@@ -1,5 +1,5 @@
 Product Version: 1.05
-Release Date: 2013-??-??
+Release Date: 2013-06-08
 
 Added Feature:
 	- Shortcut keys for the tray context menu

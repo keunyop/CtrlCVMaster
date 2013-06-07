@@ -111,9 +111,6 @@ namespace CtrlCVMaster.Gui.Contents.Options
         {
             try
             {
-                // Apply right away
-                //this.SetStartup();
-
                 // Save to the configuration
                 foreach (IOptionPanel pane in OptionPanels)
                 {
