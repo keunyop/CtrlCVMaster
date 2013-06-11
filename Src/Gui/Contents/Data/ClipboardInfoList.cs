@@ -15,6 +15,16 @@ namespace CtrlCVMaster.Gui.Contents.Data
         {
         }
 
+        #region DEBUG
+        /// <summary>
+        /// Debug Console 창에 밝은 빨간색 font
+        /// </summary>
+        private ConsoleLib.ConsoleLib.ConsoleAttributes t
+        {
+            get { return ConsoleLib.ConsoleLib.ConsoleAttributes.ForegroundRed | ConsoleLib.ConsoleLib.ConsoleAttributes.ForegroundIntensity; }
+        }
+        #endregion
+
         public ClipboardInfo FindClipboardInfoByHotKey(string key)
         {
             foreach (ClipboardInfo info in this)
@@ -104,25 +114,40 @@ namespace CtrlCVMaster.Gui.Contents.Data
         }
 
         /// <summary>
-        /// Set DataTable to the clipboardinfolist
+        /// Convert and return the clipboardinfolist from DataTable
         /// </summary>
-        /// <param name="dt"></param>
         public ClipboardInfoList SetDataTable(DataTable dt)
         {
-            // DataTable을 받아서 grid.DataSource에 넣을 수 있는 ClipboardInfoList형태로 변환
-            //List<DataRow> list = dt.AsEnumerable().ToList();
-
-            foreach (DataRow dr in dt.Rows)
+            try
             {
-                foreach (object ob in dr.ItemArray)
+                foreach (DataRow row in dt.Rows)
                 {
-                    
+                    ClipboardInfo clipboardInfo = new ClipboardInfo();
+                    for (int i = 0; i < row.ItemArray.Length; i++)
+                    {
+                        if (i == 0) clipboardInfo.SHORTKEY = row.ItemArray[0].ToString();
+                        else if (i == 1) clipboardInfo.CONTENTS = row.ItemArray[1].ToString();
+                        else if (i == 2) clipboardInfo.COPIEDTIME = row.ItemArray[2].ToString();
+                        else if (i == 3)
+                        {
+                            string contentsType = row.ItemArray[3].ToString();
+                            if ("Text".Equals(contentsType)) clipboardInfo.CONTENTSTYPE = CtrlCVMaster.Gui.Contents.CtrlCVMasterForm.ContentsType.Text;
+                            else if ("Image".Equals(contentsType)) clipboardInfo.CONTENTSTYPE = CtrlCVMaster.Gui.Contents.CtrlCVMasterForm.ContentsType.Image;
+                        }
+                        else if (i == 4) clipboardInfo.INDEX = Int32.Parse(row.ItemArray[4].ToString());
+                    }
+
+                    this.Add(clipboardInfo);
                 }
+
+                return this;
             }
-
-            
-
-            return null;
+            catch (Exception ex)
+            {
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
+                return null;
+            }            
         }
     }
 

@@ -22,13 +22,21 @@ namespace CtrlCVMaster.Gui.Contents.Data
 
             return null;
         }
+
+        public void ResetHotKey()
+        {
+            foreach (HotKeyInfo hkInfo in this)
+            {
+                hkInfo.HOTKEY = null;
+                hkInfo.HOTKEYNAME = "";
+            }
+        }
     }
 
     public class HotKeyInfo
     {
         private Hotkey hotkey = null;
         private string hotkeyName = "";
-        //private int index = 0;
 
         public Hotkey HOTKEY
         {
@@ -47,14 +55,5 @@ namespace CtrlCVMaster.Gui.Contents.Data
                 this.hotkeyName = value;
             }
         }
-
-        //public int INDEX
-        //{
-        //    get { return this.index; }
-        //    set
-        //    {
-        //        this.index = value;
-        //    }
-        //}
     }
 }

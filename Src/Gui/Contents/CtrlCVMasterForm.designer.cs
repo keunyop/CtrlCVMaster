@@ -468,7 +468,7 @@
             this.trayMenu_Close,
             this.trayMenu_Text});
             this.contextMenuStrip_tray.Name = "contextMenuStrip";
-            this.contextMenuStrip_tray.Size = new System.Drawing.Size(191, 220);
+            this.contextMenuStrip_tray.Size = new System.Drawing.Size(191, 198);
             // 
             // trayMenu_Open
             // 

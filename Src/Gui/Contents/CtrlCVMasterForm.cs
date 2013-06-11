@@ -443,28 +443,30 @@ namespace CtrlCVMaster.Gui.Contents
         {
             try
             {
-                //OpenFileDialog openFileDialog = new OpenFileDialog();
-                //openFileDialog.Title = "Open File";
-                //openFileDialog.Filter = "XML File(*.xml)|*.xml";
-                //if (openFileDialog.ShowDialog() == DialogResult.OK)
-                //{
-                //    // 1. xml 파일을 datatable로 변환
-                //    // 2. datatable을 clipboardInfoList로 변환
-                //    // 3. this.grdCtrl.DataSource = clipboardInfoList
-                //}
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Title = "Open File";
+                openFileDialog.Filter = "XML File(*.xml)|*.xml";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    this.grdCtrl.DataSource = null;
+                    this.hotKeyInfoList.ResetHotKey();
 
-                // 테스트 용
-                ClipboardInfoList clipboardInfoList = this.GetClipboardInfoList;
-                DataTable dt = clipboardInfoList.GetDataTable();
+                    DataSet ds = new DataSet();
+                    ds.ReadXml(openFileDialog.FileName);
 
-                clipboardInfoList.Clear();
+                    ClipboardInfoList clipboardInfoList = new ClipboardInfoList();                    
+                    clipboardInfoList = clipboardInfoList.SetDataTable(ds.Tables[0]);
+                    this.grdCtrl.DataSource = clipboardInfoList;
 
-                ClipboardInfoList cl = clipboardInfoList.SetDataTable(dt);
-                this.grdCtrl.DataSource = cl;
+                    foreach (ClipboardInfo clipboardInfo in clipboardInfoList)
+                    {
+                        this.SetShortcutKey(clipboardInfo);
+                    }
+                }
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                               ", t);
                 ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
@@ -508,7 +510,7 @@ namespace CtrlCVMaster.Gui.Contents
                 if (this.grdView.RowCount == 0)
                     return;
 
-                ClipboardInfo selectedInfo = this.GetClipboardInfoByRowHandle(this.grdView.FocusedRowHandle);     
+                ClipboardInfo selectedInfo = this.GetClipboardInfoByRowHandle(this.grdView.FocusedRowHandle);
            
                 // 하단 수집일시 표시
                 this.lbl_BottomInfo.Text = "Collected Time: " + selectedInfo.COPIEDTIME;
@@ -521,7 +523,7 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                               ", t);
                 ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
@@ -593,12 +595,11 @@ namespace CtrlCVMaster.Gui.Contents
         #endregion
 
         #region Shortcut Key
-        private Hotkey SetHotKey(Keys keys, bool shift, bool control, bool alt, bool windows)
+        private Hotkey SetHotKey(Keys keys, bool shift, bool control, bool alt, bool windows, ClipboardInfo selectedInfo)
         {
             try
             {
-                ClipboardInfo clipboardInfo = this.GetClipboardInfoByRowHandle(this.grdView.FocusedRowHandle);
-                int index = clipboardInfo.INDEX;
+                int index = selectedInfo.INDEX;
 
                 Hotkey hk = new Hotkey();
                 hk.KeyCode = keys;
@@ -711,7 +712,7 @@ namespace CtrlCVMaster.Gui.Contents
             }
             catch (Exception ex)
             {
-                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                             ", t);
                 ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }
@@ -901,7 +902,6 @@ namespace CtrlCVMaster.Gui.Contents
             {
                 ClipboardInfoList clipboardInfoList = this.GetClipboardInfoList;
                 ClipboardInfo selectedInfo = this.GetClipboardInfoByRowHandle(this.grdView.FocusedRowHandle);
-                HotKeyInfo hkInfo = new HotKeyInfo();
 
                 if (selectedInfo != null)
                 {
@@ -925,41 +925,14 @@ namespace CtrlCVMaster.Gui.Contents
                                 selectedInfo.SHORTKEY = shortCutKey;
                                 selectedInfo.INDEX = clipboardInfoList.GetNextIndex();
 
-                                // setting global hotKey
-                                Keys key = Keys.None;
-                                switch (this.comboBoxEdit_Keys.Text)
-                                {
-                                    case "1": key = Keys.D1; break;
-                                    case "2": key = Keys.D2; break;
-                                    case "3": key = Keys.D3; break;
-                                    case "4": key = Keys.D4; break;
-                                    case "5": key = Keys.D5; break;
-                                    case "6": key = Keys.D6; break;
-                                    case "7": key = Keys.D7; break;
-                                    case "8": key = Keys.D8; break;
-                                    case "9": key = Keys.D9; break;
-                                    case "0": key = Keys.D0; break;
-                                    default: break;
-                                }
+                                this.SetShortcutKey(selectedInfo);
 
-                                Hotkey hk =  this.SetHotKey(key, this.chkbox_shift.Checked, this.chkBox_Ctrl.Checked, this.chkBox_Alt.Checked, false);
-                                if (hk == null)
-                                {
-                                    selectedInfo.SHORTKEY = "";
-                                    selectedInfo.INDEX = 0;
-                                    return;
-                                }                                    
-                                hkInfo.HOTKEY = hk;
-                                hkInfo.HOTKEYNAME = shortCutKey;
-                                //hkInfo.INDEX = clipboardInfoList.GetNextIndex();
-                                hotKeyInfoList.Add(hkInfo);
+                                this.grdView.RefreshRow(this.grdView.FocusedRowHandle);
                             }
                             else
                             {
                                 MessageBox.Show("Shortcut Key [" + shortCutKey + "] is already being used.", "WARNING");
                             }
-
-                            this.grdView.RefreshRow(this.grdView.FocusedRowHandle);
                         }
                         else
                         {
@@ -967,9 +940,59 @@ namespace CtrlCVMaster.Gui.Contents
                         }
                     }
                     else
-                    {                        
+                    {
                         MessageBox.Show("To set a shortcut key, at least one of Ctrl or Alt key must be checked.", "WARNING");
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
+            }
+        }
+
+        /// <summary>
+        /// Set global hotkey
+        /// </summary>
+        private void SetShortcutKey(ClipboardInfo selectedInfo)
+        {
+            try
+            {
+                ClipboardInfoList clipboardInfoList = this.GetClipboardInfoList;
+                HotKeyInfo hkInfo = new HotKeyInfo();
+
+                if (selectedInfo != null)
+                {
+                    string hotkey = selectedInfo.SHORTKEY;
+                    string hotkeyNum = hotkey.Substring(hotkey.LastIndexOf("+")+1);
+                    bool ctrl = hotkey.Contains("Ctrl");
+                    bool alt = hotkey.Contains("Alt");
+                    bool shift = hotkey.Contains("Shift");
+
+                    // setting global hotKey
+                    Keys key = Keys.None;
+                    switch (hotkeyNum)
+                    {
+                        case "1": key = Keys.D1; break;
+                        case "2": key = Keys.D2; break;
+                        case "3": key = Keys.D3; break;
+                        case "4": key = Keys.D4; break;
+                        case "5": key = Keys.D5; break;
+                        case "6": key = Keys.D6; break;
+                        case "7": key = Keys.D7; break;
+                        case "8": key = Keys.D8; break;
+                        case "9": key = Keys.D9; break;
+                        case "0": key = Keys.D0; break;
+                        default: break;
+                    }
+
+                    Hotkey hk = this.SetHotKey(key, shift, ctrl, alt, false, selectedInfo);
+                    if (hk == null) return;
+
+                    hkInfo.HOTKEY = hk;
+                    hkInfo.HOTKEYNAME = hotkey;
+                    hotKeyInfoList.Add(hkInfo);
                 }
             }
             catch (Exception ex)
