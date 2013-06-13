@@ -88,7 +88,8 @@
             this.comboBoxEdit_Keys.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit_Keys.Properties.Items.AddRange(new object[] {
-            "Q"});
+            "Q",
+            "W"});
             this.comboBoxEdit_Keys.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.comboBoxEdit_Keys.Size = new System.Drawing.Size(68, 20);
             this.comboBoxEdit_Keys.TabIndex = 6;

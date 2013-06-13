@@ -22,7 +22,7 @@ namespace CtrlCVMaster
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
+
             CtrlCVMasterForm form = new CtrlCVMasterForm();
             int x = Screen.PrimaryScreen.Bounds.Width - form.Width;
             int y = Screen.PrimaryScreen.Bounds.Height - form.Height;

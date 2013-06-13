@@ -25,18 +25,6 @@ namespace CtrlCVMaster.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
-        public int General_MaxNumOfShortCut {
-            get {
-                return ((int)(this["General_MaxNumOfShortCut"]));
-            }
-            set {
-                this["General_MaxNumOfShortCut"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool General_SystemStartup {
             get {

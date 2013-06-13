@@ -12,12 +12,14 @@ namespace CtrlCVMaster.Gui.Contents.Options
 {
     public partial class SettingForm : Form
     {
+        CtrlCVMasterForm ctrlCVMasterForm = null;
         private List<IOptionPanel> OptionPanels = new List<IOptionPanel>();
 
-        public SettingForm()
+        public SettingForm(CtrlCVMasterForm form)
         {
             InitializeComponent();
             this.SetData();
+            this.ctrlCVMasterForm = form;
         }
 
         private void SetData()
@@ -117,6 +119,9 @@ namespace CtrlCVMaster.Gui.Contents.Options
                     if (!pane.ReceiveDialogMessage(DialogMessage.OK))
                         return;
                 }
+
+                // Apply right away
+                this.ctrlCVMasterForm.SetShortCutKeyFromSetting();
 
                 this.DialogResult = DialogResult.OK;
             }

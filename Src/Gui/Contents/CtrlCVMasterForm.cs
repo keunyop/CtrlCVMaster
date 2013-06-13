@@ -14,11 +14,14 @@ using DevExpress.XtraEditors;
 using System.Xml;
 using CtrlCVMaster.Gui.Contents.Options;
 using CtrlCVMaster.Properties;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 
 namespace CtrlCVMaster.Gui.Contents
 {
     public partial class CtrlCVMasterForm : Form
     {
+        private Hotkey activateKey = null;
         private bool IsCtrlPressed = false;
         private ComponentResourceManager imgResource = new ComponentResourceManager(typeof(CtrlCVMasterForm));
         private HotKeyInfoList hotKeyInfoList = new HotKeyInfoList();
@@ -29,7 +32,9 @@ namespace CtrlCVMaster.Gui.Contents
             this.SetData();
 
             // Setting the default CtrlCVMaster Activate shortcut key
-            this.ActivateShortcutKey(Keys.Q, false, false, true, false);
+            this.SetShortCutKeyFromSetting();
+
+            this.chkBox_Alt.Enabled = false;
         }
 
         #region Utilities
@@ -41,6 +46,32 @@ namespace CtrlCVMaster.Gui.Contents
         private ClipboardInfo GetClipboardInfoByRowHandle(int rowHandle)
         {
             return this.grdView.GetRow(rowHandle) as ClipboardInfo;
+        }
+
+        public void SetShortCutKeyFromSetting()
+        {
+            bool ctrl = false;
+            bool alt = false;
+            bool shift = false;
+            string activateKey = Settings.Default["Shortcut_ActiveKey"].ToString();
+            string keyText = activateKey.Substring(activateKey.LastIndexOf("+") + 1);
+            if (activateKey.Length > 0)
+            {
+                if (activateKey.Contains("Ctrl"))
+                    ctrl = true;
+                if (activateKey.Contains("Alt"))
+                    alt = true;
+                if (activateKey.Contains("Shift"))
+                    shift = true;
+            }
+
+            Keys key = Keys.None;
+            if ("Q".Equals(keyText))
+                key = Keys.Q;
+            else if ("W".Equals(keyText))
+                key = Keys.W;
+
+            this.ActivateShortcutKey(key, shift, ctrl, alt, false);
         }
 
         #region DEBUG
@@ -58,7 +89,7 @@ namespace CtrlCVMaster.Gui.Contents
         private void SetData()
         {
             ClipboardInfoList clipboardInfoList = new ClipboardInfoList();
-            this.grdCtrl.DataSource = clipboardInfoList;
+            this.grdCtrl.DataSource = clipboardInfoList;            
         }
 
         public int AddData()
@@ -77,6 +108,7 @@ namespace CtrlCVMaster.Gui.Contents
                 ClipboardInfo clipboardInfo = new ClipboardInfo();
                 if (Clipboard.ContainsText()) // if the copied object is a text
                 {
+                    ConsoleLib.ConsoleLib.WriteFormatted("Copy: " + Clipboard.GetText(), ConsoleLib.ConsoleLib.ConsoleAttributes.ForegroundGreen);
                     clipboardInfo.CONTENTS = Clipboard.GetText();
                     clipboardInfo.CONTENTSTYPE = ContentsType.Text;
                 }
@@ -128,7 +160,7 @@ namespace CtrlCVMaster.Gui.Contents
         /// </summary>
         private void btnAbout_Click(object sender, EventArgs e)
         {
-            SettingForm settingForm = new SettingForm();
+            SettingForm settingForm = new SettingForm(this);
             settingForm.ShowDialog();
         }
 
@@ -137,6 +169,7 @@ namespace CtrlCVMaster.Gui.Contents
         /// </summary>
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            Console.WriteLine("!!!!!!!!!");
             this.lbl_ItemCount.Text = "Count: " + this.AddItem();
             this.grdView.FocusedColumn = this.col_Contents;
             this.grdView.ShowEditor();     
@@ -1136,17 +1169,54 @@ namespace CtrlCVMaster.Gui.Contents
         {
             try
             {
-                Hotkey hk = new Hotkey();
+                if (this.activateKey != null)
+                    this.activateKey.Unregister();
 
-                hk.KeyCode = keys;
-                hk.Shift = shift;
-                hk.Control = control;
-                hk.Alt = alt;
-                hk.Windows = windows;
+                this.activateKey = new Hotkey();
 
-                hk.Pressed += new HandledEventHandler(activateHk_Pressed);
+                activateKey.KeyCode = keys;
+                activateKey.Shift = shift;
+                activateKey.Control = control;
+                activateKey.Alt = alt;
+                activateKey.Windows = windows;
 
-                if (hk.GetCanRegister(this)) hk.Register(this);
+                activateKey.Pressed += new HandledEventHandler(activateHk_Pressed);
+
+                if (activateKey.GetCanRegister(this)) activateKey.Register(this);
+            }
+            catch (Exception ex)
+            {
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
+            }
+        }
+
+        private void grdView_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                GridView view = (GridView)sender;
+                Point pt = view.GridControl.PointToClient(Control.MousePosition);
+                this.DoRowDoubleClick(view, pt);
+            }
+            catch (Exception ex)
+            {
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
+            }
+        }
+
+        private void DoRowDoubleClick(GridView view, Point pt)
+        {
+            try
+            {
+                GridHitInfo info = view.CalcHitInfo(pt);
+                if (info.InRow || info.InRowCell)
+                {
+                    ConsoleLib.ConsoleLib.WriteFormatted("Paste: " + info.Column.View.FocusedValue, ConsoleLib.ConsoleLib.ConsoleAttributes.ForegroundIntensity);
+                    this.WindowState = FormWindowState.Minimized;
+                    SendKeys.SendWait("^v");
+                }
             }
             catch (Exception ex)
             {

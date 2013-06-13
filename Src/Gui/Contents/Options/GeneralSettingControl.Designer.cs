@@ -28,42 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbl_Max = new DevExpress.XtraEditors.LabelControl();
-            this.cmb_Max = new DevExpress.XtraEditors.ComboBoxEdit();
             this.chk_Startup = new DevExpress.XtraEditors.CheckEdit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmb_Max.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chk_Startup.Properties)).BeginInit();
             this.SuspendLayout();
             // 
-            // lbl_Max
-            // 
-            this.lbl_Max.Location = new System.Drawing.Point(28, 32);
-            this.lbl_Max.Name = "lbl_Max";
-            this.lbl_Max.Size = new System.Drawing.Size(200, 14);
-            this.lbl_Max.TabIndex = 0;
-            this.lbl_Max.Text = "Max. # of Shortcut Keys can be set:";
-            // 
-            // cmb_Max
-            // 
-            this.cmb_Max.EditValue = "10";
-            this.cmb_Max.Location = new System.Drawing.Point(236, 29);
-            this.cmb_Max.Name = "cmb_Max";
-            this.cmb_Max.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmb_Max.Properties.Items.AddRange(new object[] {
-            "5",
-            "10",
-            "15",
-            "20",
-            "25",
-            "30"});
-            this.cmb_Max.Properties.ReadOnly = true;
-            this.cmb_Max.Size = new System.Drawing.Size(71, 20);
-            this.cmb_Max.TabIndex = 1;
-            // 
             // chk_Startup
             // 
-            this.chk_Startup.Location = new System.Drawing.Point(26, 79);
+            this.chk_Startup.Location = new System.Drawing.Point(26, 32);
             this.chk_Startup.Name = "chk_Startup";
             this.chk_Startup.Properties.Caption = "Start CtrlCVMaster on System Startup";
             this.chk_Startup.Size = new System.Drawing.Size(236, 19);
@@ -75,21 +46,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.chk_Startup);
-            this.Controls.Add(this.cmb_Max);
-            this.Controls.Add(this.lbl_Max);
             this.Name = "GeneralSettingControl";
             this.Size = new System.Drawing.Size(397, 333);
-            ((System.ComponentModel.ISupportInitialize)(this.cmb_Max.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chk_Startup.Properties)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private DevExpress.XtraEditors.LabelControl lbl_Max;
-        private DevExpress.XtraEditors.ComboBoxEdit cmb_Max;
         private DevExpress.XtraEditors.CheckEdit chk_Startup;
     }
 }

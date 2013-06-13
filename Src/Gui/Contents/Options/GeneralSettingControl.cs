@@ -57,7 +57,6 @@ namespace CtrlCVMaster.Gui.Contents.Options
                 return false;
 
             // Save in the Settings
-            Settings.Default["General_MaxNumOfShortcut"] = Int32.Parse(this.cmb_Max.Text);
             Settings.Default["General_SystemStartup"] = this.chk_Startup.Checked;
             Settings.Default.Save();
 
@@ -75,12 +74,6 @@ namespace CtrlCVMaster.Gui.Contents.Options
         {
             try
             {
-                if (this.cmb_Max.Text.Trim().Length == 0)
-                {
-                    MessageBox.Show("Plese select the max. # of shortcut keys.", "WARNING");
-                    return false;
-                }
-
                 return true;
             }
             catch (Exception ex)

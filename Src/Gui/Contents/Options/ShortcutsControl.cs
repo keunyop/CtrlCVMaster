@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using CtrlCVMaster.Gui.Contents.Data;
 using CtrlCVMaster.Gui.Contents.Options;
 using CtrlCVMaster.Properties;
+using CtrlCVMaster.Gui.Contents;
 
 namespace CtrlCVMaster.Src.Gui.Contents.Options
 {
@@ -47,7 +48,7 @@ namespace CtrlCVMaster.Src.Gui.Contents.Options
 
             // Save in the Settings
             Settings.Default["Shortcut_ActiveKey"] = this.popupContainerEdit.Text;
-            Settings.Default.Save();
+            Settings.Default.Save();                        
 
             return true;
         }

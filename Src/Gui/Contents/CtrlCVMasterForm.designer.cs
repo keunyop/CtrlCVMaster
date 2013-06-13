@@ -171,6 +171,7 @@
             this.grdView.Name = "grdView";
             this.grdView.OptionsView.ShowGroupPanel = false;
             this.grdView.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.grdView_FocusedRowChanged);
+            this.grdView.DoubleClick += new System.EventHandler(this.grdView_DoubleClick);
             // 
             // col_ShortKey
             // 
@@ -299,6 +300,7 @@
             this.col_Contents.Caption = "Contents";
             this.col_Contents.FieldName = "CONTENTS";
             this.col_Contents.Name = "col_Contents";
+            this.col_Contents.OptionsColumn.AllowEdit = false;
             this.col_Contents.Visible = true;
             this.col_Contents.VisibleIndex = 1;
             this.col_Contents.Width = 242;

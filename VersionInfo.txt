@@ -3,6 +3,7 @@ Release Date: 2013-0?-0?
 
 Added Feature:
 	- Save & Open clipboard list
+	- CtrlCVMaster Activate Shortcut Key changeable
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 Product Version: 1.05
