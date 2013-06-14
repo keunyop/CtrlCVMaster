@@ -15,6 +15,7 @@ using CtrlCVMaster.Gui.Contents.Options;
 using CtrlCVMaster.Properties;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using DevExpress.XtraEditors;
 
 namespace CtrlCVMaster.Gui.Contents
 {
@@ -32,8 +33,8 @@ namespace CtrlCVMaster.Gui.Contents
 
             // Setting the default CtrlCVMaster Activate shortcut key
             this.SetShortCutKeyFromSetting();
-
-            this.chkBox_Alt.Enabled = false;
+            
+            //this.chkBox_Alt.Enabled = false;
         }
 
         #region Utilities
@@ -168,10 +169,9 @@ namespace CtrlCVMaster.Gui.Contents
         /// </summary>
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("!!!!!!!!!");
             this.lbl_ItemCount.Text = "Count: " + this.AddItem();
             this.grdView.FocusedColumn = this.col_Contents;
-            this.grdView.ShowEditor();     
+            this.RenameNode();
         }
 
         private int AddItem()
@@ -1212,7 +1212,6 @@ namespace CtrlCVMaster.Gui.Contents
                 GridHitInfo info = view.CalcHitInfo(pt);
                 if (info.InRow || info.InRowCell)
                 {
-                    ConsoleLib.ConsoleLib.WriteFormatted("Paste: " + info.Column.View.FocusedValue, ConsoleLib.ConsoleLib.ConsoleAttributes.ForegroundIntensity);
                     this.WindowState = FormWindowState.Minimized;
                     SendKeys.SendWait("^v");
                 }
@@ -1220,6 +1219,53 @@ namespace CtrlCVMaster.Gui.Contents
             catch (Exception ex)
             {
                 ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                    ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
+            }
+        }
+
+        /// <summary>
+        /// Clipboard contents context menu edit button
+        /// </summary>
+        private void contextMenuStrip_Edit_Click(object sender, EventArgs e)
+        {
+            this.RenameNode();
+        }
+
+        private void RenameNode()
+        {
+            try
+            {
+                this.grdView.Columns["CONTENTS"].OptionsColumn.AllowEdit = true;
+                this.grdView.FocusedColumn = this.col_Contents;
+
+                this.grdView.ShowEditor();
+                TextEdit editor = this.grdView.ActiveEditor as TextEdit;
+                if (editor != null)
+                {
+                    editor.SelectionStart = 0;
+                    editor.SelectionLength = editor.Text.Length;
+                }
+            }
+            catch (Exception ex)
+            {
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                               ", t);
+                ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
+            }
+        }
+
+        private void repTxtContent_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                TextEdit editor = this.grdView.ActiveEditor as TextEdit;
+                if (editor!= null)
+                    this.grdView.SetFocusedValue(editor.Text);
+
+                this.grdView.Columns["CONTENTS"].OptionsColumn.AllowEdit = false;
+            }
+            catch (Exception ex)
+            {
+                ConsoleLib.ConsoleLib.WriteFormatted(ex.ToString() + "                               ", t);
                 ConsoleLib.ConsoleLib.WriteLine(Environment.NewLine);
             }
         }

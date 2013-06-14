@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtrlCVMasterForm));
             this.grdCtrl = new DevExpress.XtraGrid.GridControl();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip_Edit = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.contextMenuStrip_Add = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip_Delete = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -50,6 +52,7 @@
             this.lbl_ctrl = new DevExpress.XtraEditors.LabelControl();
             this.chkbox_shift = new DevExpress.XtraEditors.CheckEdit();
             this.col_Contents = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repTxtContent = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.repPopUp_Image = new DevExpress.XtraEditors.Repository.RepositoryItemImageEdit();
             this.globalEventProvider = new Gma.UserActivityMonitor.GlobalEventProvider();
             this.pnlTop = new DevExpress.XtraEditors.PanelControl();
@@ -86,6 +89,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chkBox_Alt.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkBox_Ctrl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkbox_shift.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repTxtContent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repPopUp_Image)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).BeginInit();
             this.pnlTop.SuspendLayout();
@@ -104,7 +108,8 @@
             this.grdCtrl.Name = "grdCtrl";
             this.grdCtrl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repPopUp,
-            this.repPopUp_Image});
+            this.repPopUp_Image,
+            this.repTxtContent});
             this.grdCtrl.Size = new System.Drawing.Size(355, 234);
             this.grdCtrl.TabIndex = 4;
             this.grdCtrl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -113,13 +118,29 @@
             // contextMenuStrip
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.contextMenuStrip_Edit,
+            this.toolStripSeparator2,
             this.contextMenuStrip_Add,
             this.contextMenuStrip_Delete,
             this.toolStripSeparator1,
             this.contextMenuStrip_MoveUp,
             this.contextMenuStrip_MoveDown});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(207, 98);
+            this.contextMenuStrip.Size = new System.Drawing.Size(207, 126);
+            // 
+            // contextMenuStrip_Edit
+            // 
+            this.contextMenuStrip_Edit.Image = ((System.Drawing.Image)(resources.GetObject("contextMenuStrip_Edit.Image")));
+            this.contextMenuStrip_Edit.Name = "contextMenuStrip_Edit";
+            this.contextMenuStrip_Edit.ShortcutKeys = System.Windows.Forms.Keys.F2;
+            this.contextMenuStrip_Edit.Size = new System.Drawing.Size(206, 22);
+            this.contextMenuStrip_Edit.Text = "Edit";
+            this.contextMenuStrip_Edit.Click += new System.EventHandler(this.contextMenuStrip_Edit_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(203, 6);
             // 
             // contextMenuStrip_Add
             // 
@@ -298,12 +319,19 @@
             this.col_Contents.AppearanceHeader.Options.UseTextOptions = true;
             this.col_Contents.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.col_Contents.Caption = "Contents";
+            this.col_Contents.ColumnEdit = this.repTxtContent;
             this.col_Contents.FieldName = "CONTENTS";
             this.col_Contents.Name = "col_Contents";
             this.col_Contents.OptionsColumn.AllowEdit = false;
             this.col_Contents.Visible = true;
             this.col_Contents.VisibleIndex = 1;
             this.col_Contents.Width = 242;
+            // 
+            // repTxtContent
+            // 
+            this.repTxtContent.AutoHeight = false;
+            this.repTxtContent.Name = "repTxtContent";
+            this.repTxtContent.Leave += new System.EventHandler(this.repTxtContent_Leave);
             // 
             // repPopUp_Image
             // 
@@ -580,6 +608,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chkBox_Alt.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkBox_Ctrl.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkbox_shift.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repTxtContent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repPopUp_Image)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).EndInit();
             this.pnlTop.ResumeLayout(false);
@@ -640,5 +669,8 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemImageEdit repPopUp_Image;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem trayMenu_OpenDisabled;
+        private System.Windows.Forms.ToolStripMenuItem contextMenuStrip_Edit;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repTxtContent;
     }
 }

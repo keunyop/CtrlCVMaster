@@ -121,6 +121,16 @@
     <value>475, 19</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="contextMenuStrip_Edit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAADiSURBVDhPtZMxCoNAFET/ueId9A7JBdZKrCyFpLDbahu7
+        HMW0sTVVGiuxECwUfnYWTSS4SpR8eIzz3RkLlf4+QRAwyLLMKBhu/Tabg+NYC9I0lRpeAwUze0lKKe77
+        nruuWwQFU48MsiSl5LZtWVyfVqqqMgXQEWSQpSRJuGkaPqqHpuCT1pPR4r0ry9IUQEeQQZbiODbGu+Ts
+        ne9aQc6uvnah2tsKkKUoiow5hBk74U3rB3hH720FyJrXA1PX9SI4N/XIYEdCCOn7Pq+Bw987ZIevYX3M
+        0/bM5gIEwe6faX6IXkzPrp9v5zmnAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="contextMenuStrip_Add.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

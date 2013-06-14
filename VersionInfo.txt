@@ -1,9 +1,11 @@
-Product Version: 1.06
-Release Date: 2013-0?-0?
+Product Version: 2.00
+Release Date: 2013-06-14
 
 Added Feature:
 	- Save & Open clipboard list
 	- CtrlCVMaster Activate Shortcut Key changeable
+	- Paste the clipboard content when the clipboard list is double clicked
+	- Modify the contents of the clipboard list by F2 or context menu
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 Product Version: 1.05
