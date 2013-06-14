@@ -10,7 +10,6 @@ using CtrlCVMaster.Gui.Contents.Data;
 using System.Collections;
 using System.Runtime.InteropServices;
 using System.IO;
-using DevExpress.XtraEditors;
 using System.Xml;
 using CtrlCVMaster.Gui.Contents.Options;
 using CtrlCVMaster.Properties;

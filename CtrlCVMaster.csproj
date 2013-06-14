@@ -38,28 +38,16 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Data.v11.2, Version=11.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.PivotGrid.v11.2.Core, Version=11.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Printing.v11.2.Core, Version=11.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Utils.v11.2, Version=11.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraBars.v11.2, Version=11.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.XtraEditors.v11.2, Version=11.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.XtraGrid.v11.2, Version=11.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraLayout.v11.2, Version=11.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Gma.UserActivityMonitor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
